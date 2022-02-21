@@ -1,0 +1,190 @@
+<div class="row">
+  <div class="col">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Район проектирования:</span>
+      <input type="text" class="form-control">
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Наименование объекта:</span>
+      <input type="text" class="form-control">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputТипМестностиПоРельефу">Тип местности по рельефу:</label>
+      <select class="form-select" id="inputТипМестностиПоРельефу">
+        <option value="1">Равнинные районы</option>
+        <option value="2">Предгорные районы</option>
+        <option value="3">Горные районы</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputДорожноКлиматическаяЗона">Дорожно-климатическая зона:</label>
+      <select class="form-select" id="inputДорожноКлиматическаяЗона">
+        <option value="1">I-1</option>
+        <option value="2">I-2</option>
+        <option value="3">I-3</option>
+        <option value="4">II-1</option>
+        <option value="5">II-2</option>
+        <option value="6">II-3</option>
+        <option value="7">II-4</option>
+        <option value="8">II-5</option>
+        <option value="9">II-6</option>
+        <option value="10">III-1</option>
+        <option value="11">III-2</option>
+        <option value="12">III-3</option>
+        <option value="13">IV</option>
+        <option value="14">V</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputНомерРайонаПоКоличествуРасчётныхДней">Номер района по количеству расчётных дней:</label>
+      <select class="form-select" id="inputНомерРайонаПоКоличествуРасчётныхДней">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputСхемаУвлажненияРабочегоСлоя">Схема увлажнения рабочего слоя:</label>
+      <select class="form-select" id="inputСхемаУвлажненияРабочегоСлоя">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputКатегорияДороги">Категория дороги:</label>
+      <select class="form-select" id="inputКатегорияДороги">
+        <option value="1">I</option>
+        <option value="2">II</option>
+        <option value="3">III</option>
+        <option value="4">IV</option>
+        <option value="5">V</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Поправка на влажность:</span>
+      <input type="text" class="form-control" value="0">
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputТипДорожнойОдежды">Тип дорожной одежды:</label>
+      <select class="form-select" id="inputТипДорожнойОдежды">
+        <option value="1">Капитальный</option>
+        <option value="2">Облегчённый</option>
+        <option value="3">Переходный</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputКоличествоПолосДвижения">Количество полос движения:</label>
+      <select class="form-select" id="inputКоличествоПолосДвижения">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputЗаданнаяНадёжность">Заданная надёжность:</label>
+      <select class="form-select" id="inputЗаданнаяНадёжность">
+        <option value="1">0.98</option>
+        <option value="2">0.95</option>
+        <option value="3">0.90</option>
+        <option value="4">0.85</option>
+        <option value="5">0.80</option>
+        <option value="6">0.70</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputТипЗемляногоПолотна">Тип земляного полотна:</label>
+      <select class="form-select" id="inputТипЗемляногоПолотна">
+        <option value="1">Насыпь</option>
+        <option value="2">Нулевые места (h < 1м)</option>
+        <option value="3">Выемка</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Глубина промерзания грунта от поверхности покрытия:</span>
+      <input type="text" class="form-control">
+      <span class="input-group-text"> м</span>
+    </div>
+  </div>
+  <div class="col">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Расстояние от низа дорожной одежды до расчётного УГВ:</span>
+      <input type="text" class="form-control">
+      <span class="input-group-text"> м</span>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <div class="input-group mb-3">
+      <label class="input-group-text" for="inputКоэффициентУплотненияГрунта">Коэффициент уплотнения грунта:</label>
+      <select class="form-select" id="inputКоэффициентУплотненияГрунта">
+        <option value="1">1.03 - 1.00</option>
+        <option value="2">1.01 - 0.98</option>
+        <option value="3">0.97 - 0.95</option>
+        <option value="4">0.94 - 0.90</option>
+        <option value="4">< 0.90</option>
+      </select>
+    </div>
+  </div>
+  <div class="col">
+    <div class="input-group mb-3">
+      <span class="input-group-text">Ширина проезжей части:</span>
+      <input type="text" class="form-control">
+      <span class="input-group-text"> м</span>
+    </div>
+  </div>
+</div>

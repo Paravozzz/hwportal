@@ -1,0 +1,18 @@
+<app-comptitle [title]="'Расчёт дорожной одежды'"></app-comptitle>
+
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" (click)="onTabClick($event)" href="#">Исходные данные</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-secondary" (click)="onTabClick($event)" href="#">Нагрузки</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-secondary" (click)="onTabClick($event)" href="#">Варианты конструкций</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link link-secondary" (click)="onTabClick($event)" href="#">Расчёт</a>
+  </li>
+</ul>
+<app-idtab *ngIf="currentTab === 'idtab'"></app-idtab>
+<app-loadstab *ngIf="currentTab === 'loadstab'"></app-loadstab>
