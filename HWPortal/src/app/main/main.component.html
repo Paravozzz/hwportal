@@ -32,7 +32,7 @@
       </div>
     </div>
   </nav>
-  <div class="container mt-3">
+  <div class="container mt-3" style="min-height: 84vh">
     <app-landing *ngIf="componentName==='app-landing'"></app-landing>
     <app-news *ngIf="componentName==='app-news'"></app-news>
     <app-calcdo *ngIf="componentName==='app-calcdo'"></app-calcdo>
@@ -40,7 +40,7 @@
     <app-about *ngIf="componentName==='app-about'"></app-about>
     <app-credits *ngIf="componentName==='app-credits'"></app-credits>
   </div>
-  <nav class="navbar fixed-bottom navbar-expand-sm navbar-light">
+  <nav class="navbar navbar-expand-sm navbar-light">
     <div class="container">
       <ul class="navbar-nav ms-auto border-top">
         <li class="nav-item">

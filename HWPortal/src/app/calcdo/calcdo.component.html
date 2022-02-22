@@ -1,18 +1,40 @@
 <app-comptitle [title]="'Расчёт дорожной одежды'"></app-comptitle>
 
-<ul class="nav nav-tabs mb-3">
-  <li class="nav-item">
-    <a class="nav-link active" aria-current="page" (click)="onTabClick($event)" href="#">Исходные данные</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link link-secondary" (click)="onTabClick($event)" href="#">Нагрузки</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link link-secondary" (click)="onTabClick($event)" href="#">Варианты конструкций</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link link-secondary" (click)="onTabClick($event)" href="#">Расчёт</a>
-  </li>
-</ul>
-<app-idtab *ngIf="currentTab === 'idtab'"></app-idtab>
-<app-loadstab *ngIf="currentTab === 'loadstab'"></app-loadstab>
+<div class="accordion" id="accordionPanelsStayOpenExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne">
+        Исходные данные
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+      <div class="accordion-body">
+        <app-idtab></app-idtab>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo">
+        Нагрузки
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
+      <div class="accordion-body">
+        <app-loadstab></app-loadstab>
+      </div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree">
+        Варианты конструкций
+      </button>
+    </h2>
+    <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show">
+      <div class="accordion-body">
+        Красивые контролы с вариантыми конструкций
+      </div>
+    </div>
+  </div>
+</div>
