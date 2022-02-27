@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col"><input class="form-check-input" type="checkbox" [(ngModel)]="allLayersChecked" (change)="selectAll()" #allLayersCheckbox /></th>
+      <th scope="col">Наименование</th>
+      <th scope="col">Толщина</th>
+      <th scope="col">Мин.</th>
+      <th scope="col">Макс.</th>
+      <th scope="col">Шаг</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let layer of variant; let i = index">
+      <th scope="row">{{i+1}}</th>
+      <th scope="row"><input class="form-check-input" type="checkbox" [(ngModel)]="layer.checked" (change)="layerSelected(i)"></th>
+      <td>{{layer.name}}</td>
+      <td><input type="text" class="form-control form-control-sm" [(ngModel)]="layer.height" readonly></td>
+      <td><input type="text" class="form-control form-control-sm" [(ngModel)]="layer.minHeight"></td>
+      <td><input type="text" class="form-control form-control-sm" [(ngModel)]="layer.maxHeight"></td>
+      <td><input type="text" class="form-control form-control-sm" [(ngModel)]="layer.heightStep"></td>
+    </tr>
+  </tbody>
+</table>

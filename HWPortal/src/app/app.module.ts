@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +14,10 @@ import { CreditsComponent } from './credits/credits.component';
 import { ComptitleComponent } from './comptitle/comptitle.component';
 import { IdtabComponent } from './calcdo/idtab/idtab.component';
 import { LoadstabComponent } from './calcdo/loadstab/loadstab.component';
+import { ConstrtabComponent } from './calcdo/constrtab/constrtab.component';
+import { LayersTableComponent } from './calcdo/constrtab/layers-table/layers-table.component';
+import { LayersControlsComponent } from './calcdo/constrtab/layers-controls/layers-controls.component';
+import { PavementVarComponent } from './calcdo/constrtab/pavement-var/pavement-var.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +31,16 @@ import { LoadstabComponent } from './calcdo/loadstab/loadstab.component';
     CreditsComponent,
     ComptitleComponent,
     IdtabComponent,
-    LoadstabComponent
+    LoadstabComponent,
+    ConstrtabComponent,
+    LayersTableComponent,
+    LayersControlsComponent,
+    PavementVarComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
