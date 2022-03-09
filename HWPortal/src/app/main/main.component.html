@@ -28,17 +28,19 @@
             </ul>
           </li>
         </ul>
-        <a class="navbar-btn btn btn-sm btn-outline-primary ms-auto" href="#">Войти</a>
+        <a class="navbar-btn btn btn-sm btn-outline-primary ms-auto" href="#" (click)="switchComponent('app-login')">Войти</a>
       </div>
     </div>
   </nav>
   <div class="container mt-3" style="min-height: 84vh">
-    <app-landing *ngIf="componentName==='app-landing'"></app-landing>
-    <app-news *ngIf="componentName==='app-news'"></app-news>
-    <app-calcdo *ngIf="componentName==='app-calcdo'"></app-calcdo>
-    <app-calcwalls *ngIf="componentName==='app-calcwalls'"></app-calcwalls>
-    <app-about *ngIf="componentName==='app-about'"></app-about>
-    <app-credits *ngIf="componentName==='app-credits'"></app-credits>
+    <app-landing *ngIf="currentComponent()==='app-landing'"></app-landing>
+    <app-news *ngIf="currentComponent()==='app-news'"></app-news>
+    <app-calcdo *ngIf="currentComponent()==='app-calcdo'"></app-calcdo>
+    <app-calcwalls *ngIf="currentComponent()==='app-calcwalls'"></app-calcwalls>
+    <app-about *ngIf="currentComponent()==='app-about'"></app-about>
+    <app-credits *ngIf="currentComponent()==='app-credits'"></app-credits>
+    <app-login *ngIf="currentComponent()==='app-login'"></app-login>
+    <app-register *ngIf="currentComponent()==='app-register'"></app-register>
   </div>
   <nav class="navbar navbar-expand-sm navbar-light">
     <div class="container">

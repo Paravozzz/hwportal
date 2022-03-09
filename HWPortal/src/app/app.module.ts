@@ -18,6 +18,9 @@ import { ConstrtabComponent } from './calcdo/constrtab/constrtab.component';
 import { LayersTableComponent } from './calcdo/constrtab/layers-table/layers-table.component';
 import { LayersControlsComponent } from './calcdo/constrtab/layers-controls/layers-controls.component';
 import { PavementVarComponent } from './calcdo/constrtab/pavement-var/pavement-var.component';
+import { DataElementDirective } from './directives/data-element.directive';
+import { RegisterComponent } from './identity/register/register.component';
+import { LoginComponent } from './identity/login/login.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +39,9 @@ import { PavementVarComponent } from './calcdo/constrtab/pavement-var/pavement-v
     LayersTableComponent,
     LayersControlsComponent,
     PavementVarComponent,
+    DataElementDirective,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

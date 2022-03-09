@@ -17,7 +17,7 @@ export class PavementVarComponent implements OnInit {
   */
   variant: PavementLayer[] = [
     {
-      id: 1, checked:false, name: 'Слой 1', height: 5, minHeight: 3, maxHeight: 7, heightStep: 1.5
+      id: 1, checked: false, name: 'Слой 1', height: 5, minHeight: 3, maxHeight: 7, heightStep: 1.5
     },
     {
       id: 2, checked: false, name: 'Слой 2', height: 7, minHeight: 7, maxHeight: 10, heightStep: 1

@@ -1,17 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ComponentService } from '../services/component.service';
+import { ComponentService } from '../../services/component.service';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
-export class MainComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
-  constructor( private componentSevice : ComponentService ) { }
+  constructor(private componentSevice : ComponentService) { }
 
   ngOnInit(): void {
-
   }
 
   // Функция переключает компоненты
