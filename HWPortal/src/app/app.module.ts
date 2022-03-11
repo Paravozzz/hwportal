@@ -5,7 +5,6 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
-import { LandingComponent } from './landing/landing.component';
 import { NewsComponent } from './news/news.component';
 import { CalcdoComponent } from './calcdo/calcdo.component';
 import { CalcwallsComponent } from './calcwalls/calcwalls.component';
@@ -18,15 +17,15 @@ import { ConstrtabComponent } from './calcdo/constrtab/constrtab.component';
 import { LayersTableComponent } from './calcdo/constrtab/layers-table/layers-table.component';
 import { LayersControlsComponent } from './calcdo/constrtab/layers-controls/layers-controls.component';
 import { PavementVarComponent } from './calcdo/constrtab/pavement-var/pavement-var.component';
-import { DataElementDirective } from './directives/data-element.directive';
-import { RegisterComponent } from './identity/register/register.component';
-import { LoginComponent } from './identity/login/login.component';
+import { DataElementDirective } from './_directives/dataElement.directive';
+import { RegisterComponent } from './accounts/register/register.component';
+import { LoginComponent } from './accounts/login/login.component';
+import { routerLinkActiveDropdownDirective } from './_directives/routerLinkActiveDropdown.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    LandingComponent,
     NewsComponent,
     CalcdoComponent,
     CalcwallsComponent,
@@ -42,6 +41,7 @@ import { LoginComponent } from './identity/login/login.component';
     DataElementDirective,
     RegisterComponent,
     LoginComponent,
+    routerLinkActiveDropdownDirective,
   ],
   imports: [
     BrowserModule,

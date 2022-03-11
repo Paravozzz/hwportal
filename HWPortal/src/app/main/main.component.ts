@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ComponentService } from '../services/component.service';
 
 @Component({
   selector: 'app-main',
@@ -8,19 +7,9 @@ import { ComponentService } from '../services/component.service';
 })
 export class MainComponent implements OnInit {
 
-  constructor( private componentSevice : ComponentService ) { }
+  constructor() { }
 
   ngOnInit(): void {
-
-  }
-
-  // Функция переключает компоненты
-  switchComponent(componentName: string): void {
-    this.componentSevice.switchComponent(componentName);
-  }
-
-  currentComponent(): string {
-    return this.componentSevice.currentComponent();
   }
 
 }

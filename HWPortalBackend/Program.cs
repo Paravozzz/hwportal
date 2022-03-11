@@ -17,7 +17,17 @@ builder.Services.AddSingleton<WebsocketServerConnectionManager>();
 builder.Services.AddDbContext<IdentityContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("IdentityConnection")));
 
-builder.Services.AddIdentity<User, IdentityRole>().AddEntityFrameworkStores<IdentityContext>();
+builder.Services.AddIdentity<User, IdentityRole>(opt =>
+{
+    opt.Password.RequiredLength = 7;
+    opt.Password.RequireDigit = false;
+    opt.Password.RequireUppercase = false;
+    opt.Password.RequireNonAlphanumeric = false;
+
+    opt.User.RequireUniqueEmail = true;
+}).AddEntityFrameworkStores<IdentityContext>();
+
+builder.Services.AddAutoMapper(typeof(Program));
 
 var app = builder.Build();
 

@@ -16,24 +16,13 @@ namespace HWPortalBackend.Controllers
         [HttpGet("/ws")]
         public async Task Get()
         {
-
-            //using (IdentityContext db = new IdentityContext())
-            //{
-            //    // создаем два объекта User
-            //    User user1 = new User { UserName = "Tom", Email = "tom@mail.com" };
-            //    User user2 = new User { UserName = "Alice", Email = "alice@mail.com" };
-
-            //    // добавляем их в бд
-            //    db.Users.AddRange(user1, user2);
-            //    db.SaveChanges();
-            //}
-
             if (HttpContext.WebSockets.IsWebSocketRequest)
             {
                 using WebSocket webSocket = await HttpContext.WebSockets.AcceptWebSocketAsync();
                 string connId = _connectionManager.AddSocket(webSocket);
                 //await Echo(webSocket);
-                await RecieveMessage(webSocket, async (result, buffer) => {
+                await RecieveMessage(webSocket, async (result, buffer) =>
+                {
                     switch (result.MessageType)
                     {
                         case WebSocketMessageType.Text:

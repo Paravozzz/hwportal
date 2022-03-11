@@ -1,5 +1,5 @@
 import { Directive, HostListener } from '@angular/core';
-import { DataService } from '../services/data.service';
+import { DataService } from '../_services/data.service';
 
 @Directive({
   selector: '[dataElement]'
