@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,8 +19,7 @@ import { LayersTableComponent } from './calcdo/constrtab/layers-table/layers-tab
 import { LayersControlsComponent } from './calcdo/constrtab/layers-controls/layers-controls.component';
 import { PavementVarComponent } from './calcdo/constrtab/pavement-var/pavement-var.component';
 import { DataElementDirective } from './_directives/dataElement.directive';
-import { RegisterComponent } from './accounts/register/register.component';
-import { LoginComponent } from './accounts/login/login.component';
+
 import { routerLinkActiveDropdownDirective } from './_directives/routerLinkActiveDropdown.directive';
 
 @NgModule({
@@ -39,14 +39,14 @@ import { routerLinkActiveDropdownDirective } from './_directives/routerLinkActiv
     LayersControlsComponent,
     PavementVarComponent,
     DataElementDirective,
-    RegisterComponent,
-    LoginComponent,
     routerLinkActiveDropdownDirective,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

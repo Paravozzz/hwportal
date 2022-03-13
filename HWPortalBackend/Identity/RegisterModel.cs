@@ -1,9 +1,0 @@
-﻿namespace HWPortalBackend.Identity
-{
-    public class RegisterModel
-    {
-        public string Name { get; set; }
-        public string Password { get; set; }
-        public string Password2 { get; set; }
-    }
-}

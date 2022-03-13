@@ -1,0 +1,55 @@
+<div class="border-start border-2">
+  <p class="fs-4 ms-3" *ngIf="isRegisterRoute">Регистрация</p>
+  <p class="fs-4 ms-3" *ngIf="!isRegisterRoute">Вход</p>
+</div>
+<div class="alert alert-danger" role="alert" *ngIf="registrationError">
+  <span *ngFor="let error of registrationErrors">- {{error}}<br></span>
+</div>
+<div class="alert alert-success" role="alert" *ngIf="registrationSuccess">
+  Регистрация прошла успешно!
+</div>
+<form [formGroup]="registerForm" (ngSubmit)="onRegisterOrLogin(registerForm.value)" novalidate>
+  <div class="row">
+    <div class="col-md-4 offset-md-4">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Email:</span>
+        <input type="text"
+               class="form-control bottomframe"
+               formControlName="email">
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4 offset-md-4">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Пароль:</span>
+        <input type="password"
+               class="form-control bottomframe"
+               formControlName="password"
+        >
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+
+    <div class="col-md-4 offset-md-4" *ngIf="isRegisterRoute">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Пароль (повторно):</span>
+        <input type="password"
+               class="form-control bottomframe"
+               formControlName="confirmPassword"
+        >
+      </div>
+    </div>
+
+    <div class="col-md-4"></div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-auto">
+      <button type="submit" class="btn btn-outline-primary btn-sm" *ngIf="isRegisterRoute == true">Зарегистрироваться</button>
+      <button type="submit" class="btn btn-outline-primary btn-sm" *ngIf="isRegisterRoute == false">Войти</button>
+    </div>
+  </div>
+</form>
+

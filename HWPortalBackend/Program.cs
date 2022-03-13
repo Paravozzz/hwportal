@@ -1,6 +1,5 @@
 using HWPortalBackend;
 using HWPortalBackend.Identity;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,20 +13,30 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddSingleton<WebsocketServerConnectionManager>();
 
+// Identity start
 builder.Services.AddDbContext<IdentityContext>(options =>
                 options.UseNpgsql(builder.Configuration.GetConnectionString("IdentityConnection")));
 
-builder.Services.AddIdentity<User, IdentityRole>(opt =>
+builder.Services.AddUserIdentity();
+// Identity end
+
+// JWT start
+var jwtConfiguration = builder.Configuration.GetSection("JwtSettings");
+builder.Services.AddJwtAuth(jwtConfiguration);
+builder.Services.AddScoped<JwtHandler>();
+// JWT end
+
+builder.Services.AddAutoMapper(typeof(Program)); //Identity
+
+string MyAllowSpecificOrigins = "MyAllowSpecificOrigins";
+builder.Services.AddCors(options =>
 {
-    opt.Password.RequiredLength = 7;
-    opt.Password.RequireDigit = false;
-    opt.Password.RequireUppercase = false;
-    opt.Password.RequireNonAlphanumeric = false;
-
-    opt.User.RequireUniqueEmail = true;
-}).AddEntityFrameworkStores<IdentityContext>();
-
-builder.Services.AddAutoMapper(typeof(Program));
+    options.AddPolicy(MyAllowSpecificOrigins,
+    builder =>
+    {
+        builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
@@ -40,6 +49,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(MyAllowSpecificOrigins);
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 var webSocketOptions = new WebSocketOptions
