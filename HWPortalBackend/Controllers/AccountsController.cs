@@ -23,16 +23,14 @@ namespace HWPortalBackend.Controllers
             _jwtHandler = jwtHandler;
         }
 
-        [HttpPost("Login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] UserForAuthenticationDto userForAuthentication)
         {
             var user = await _userManager.FindByNameAsync(userForAuthentication.Email);
             if (user == null || !await _userManager.CheckPasswordAsync(user, userForAuthentication.Password))
-                return Unauthorized(new AuthResponseDto { ErrorMessage = "Invalid Authentication" });
-            var signingCredentials = _jwtHandler.GetSigningCredentials();
-            var claims = _jwtHandler.GetClaims(user);
-            var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
-            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+                return Unauthorized(new AuthResponseDto { IsAuthSuccessful = false, ErrorMessage = "Invalid Authentication" });
+            
+            string token = await CreateToken(user);
             return Ok(new AuthResponseDto { IsAuthSuccessful = true, Token = token });
         }
 
@@ -42,6 +40,7 @@ namespace HWPortalBackend.Controllers
             if (userForRegistration == null || !ModelState.IsValid)
                 return BadRequest();
 
+            //Валидируем DTO
             UserForRegistrationDtoValidate(userForRegistration, out List<string> errors);
 
             if (errors.Count != 0)
@@ -49,8 +48,18 @@ namespace HWPortalBackend.Controllers
                 return BadRequest(new RegistrationResponseDto { IsSuccessfulRegistration = false, Errors = errors });
             }
 
+            //Проецируем DTO на User
             var user = _mapper.Map<User>(userForRegistration);
+
+            //Создаём пользователя
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
+            if (!result.Succeeded)
+            {
+                return BadRequest(new RegistrationResponseDto { IsSuccessfulRegistration = false, Errors = result.Errors.Select(e => e.Description) });
+            }
+
+            //Устанавливаем пользователю роль по-умолчанию
+            await _userManager.AddToRoleAsync(user, "User");
             if (!result.Succeeded)
             {
                 return BadRequest(new RegistrationResponseDto { IsSuccessfulRegistration = false, Errors = result.Errors.Select(e => e.Description) });
@@ -59,6 +68,17 @@ namespace HWPortalBackend.Controllers
             return StatusCode(201, new RegistrationResponseDto { IsSuccessfulRegistration = true, Errors = Array.Empty<string>() });
         }
 
+        [NonAction]
+        private async Task<string> CreateToken(User user)
+        {
+            var signingCredentials = _jwtHandler.GetSigningCredentials();
+            var claims = await _jwtHandler.GetClaims(user);
+            var tokenOptions = _jwtHandler.GenerateTokenOptions(signingCredentials, claims);
+            var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+            return token;
+        }
+
+        [NonAction]
         private static void UserForRegistrationDtoValidate(UserForRegistrationDto userForRegistration, out List<string> errors)
         {
             errors = new();
@@ -87,7 +107,8 @@ namespace HWPortalBackend.Controllers
         }
 
         //https://docs.microsoft.com/en-us/dotnet/standard/base-types/how-to-verify-that-strings-are-in-valid-email-format
-        public static bool IsValidEmail(string email)
+        [NonAction]
+        private static bool IsValidEmail(string email)
         {
             if (string.IsNullOrWhiteSpace(email))
                 return false;
@@ -99,7 +120,7 @@ namespace HWPortalBackend.Controllers
                                       RegexOptions.None, TimeSpan.FromMilliseconds(250));
 
                 // Examines the domain part of the email and normalizes it.
-                string DomainMapper(Match match)
+                static string DomainMapper(Match match)
                 {
                     // Use IdnMapping class to convert Unicode domain names.
                     var idn = new IdnMapping();

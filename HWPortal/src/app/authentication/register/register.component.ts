@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { NavigationEnd, ResolveEnd, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthResponseDto } from '../../_interfaces/AuthResponseDto';
 import { RegistrationResponseDto } from '../../_interfaces/RegistrationResponseDto';
+import { UserForAuthenticationDto } from '../../_interfaces/UserForAuthenticationDto';
 import { UserForRegistrationDto } from '../../_interfaces/UserForRegistrationDto';
 import { AuthenticationService } from '../../_services/authentication.service';
+import { EnvironmentUrlService } from '../../_services/environment-url.service';
 
 @Component({
   selector: 'app-register',
@@ -12,16 +14,20 @@ import { AuthenticationService } from '../../_services/authentication.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  public registerForm!: FormGroup;
-  public registrationError: boolean = false;
-  public registrationErrors: string[] = [];
-  public registrationSuccess: boolean = false;
 
+  public registerForm!: FormGroup;
+
+  public errorMessage: string = '';
+  public successMessage: string = '';
+ 
   public isRegisterRoute!: boolean;
-  private subscription!: Subscription;
-  constructor(private _authService: AuthenticationService, private _router: Router) { }
+  private returnUrl!: string;
+
+  constructor(private _authService: AuthenticationService, private _router: Router, private _envUrl: EnvironmentUrlService, private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
+
+    this.returnUrl = this._route.snapshot.queryParams['returnUrl'] || '/';
 
     if (this._router.url === '/authentication/register') {
       this.isRegisterRoute = true;
@@ -36,12 +42,8 @@ export class RegisterComponent implements OnInit {
     });
   }
 
-  public onLogin(registerFormValue: any) {
-    alert("login!");
-  }
-
-  public onRegisterOrLogin(registerFormValue: any) {
-    this.resetErrors();
+  public onRegisterOrLogin(registerFormValue: any): void {
+    this.resetMessages();
 
     const formValues = { ...registerFormValue };
     if (this.isRegisterRoute) { //Регистрация пользователя
@@ -52,16 +54,38 @@ export class RegisterComponent implements OnInit {
       };
       this._authService.registerUser("api/accounts/registration", user)
         .subscribe((responce: RegistrationResponseDto) => {
-          this.resetErrors();
-          this.registrationSuccess = true;
-          this.registerForm.reset();
+          this.resetMessages();
+          this.successMessage = "Регистрация прошла упешно!";
+          this.registerForm.setValue({ 'password': '', 'confirmPassword': '' });
+
+          setTimeout(() => {
+            this._router.navigate(["api/accounts/login"]);
+          }, 1500);
         },
           error => {
-            this.registrationError = true;
-            this.registrationErrors = error.error.errors;
-          })
+            this.errorMessage = error;
+          });
     } else { //Логин пользователя
+      const user: UserForAuthenticationDto = {
+        email: formValues.email,
+        password: formValues.password
+      }
+      this._authService.loginUser("api/accounts/login", user)
+        .subscribe((responce: AuthResponseDto) => {
+          this.resetMessages();
+          this.successMessage = "Пользователь успешно аутентифицирован!";
+          const token = responce.token;
+          localStorage.setItem(this._envUrl.jwtTokenName, token);
 
+          setTimeout(() => {
+            this.registerForm.reset();
+            this._authService.sendAuthStateChangeNotification(responce.isAuthSuccessful);
+            this._router.navigate([this.returnUrl]);
+          }, 1500);
+          
+        }, error => {
+          this.errorMessage = error;
+        });
     }
     
   }
@@ -73,8 +97,8 @@ export class RegisterComponent implements OnInit {
   //  return this.registerForm.controls[controlName].hasError(errorName)
   //}
 
-  private resetErrors() {
-    this.registrationError = false;
-    this.registrationErrors = [];
+  private resetMessages(): void {
+    this.errorMessage = '';
+    this.successMessage = '';
   }
 }

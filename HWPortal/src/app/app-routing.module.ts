@@ -7,12 +7,13 @@ import { CalcwallsComponent } from './calcwalls/calcwalls.component';
 import { CreditsComponent } from './credits/credits.component';
 import { MainComponent } from './main/main.component';
 import { NewsComponent } from './news/news.component';
+import { AuthGuard } from './_guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: MainComponent },
   { path: 'news', component: NewsComponent },
-  { path: 'products/calcdo', component: CalcdoComponent },
-  { path: 'products/calcwalls', component: CalcwallsComponent },
+  { path: 'products/calcdo', component: CalcdoComponent, canActivate: [AuthGuard] },
+  { path: 'products/calcwalls', component: CalcwallsComponent, canActivate: [AuthGuard] },
   { path: 'authentication', loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule) },
   { path: 'about', component: AboutComponent },
   { path: 'credits', component: CreditsComponent },

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  urlAddress: 'https://localhost:7048'
+  urlAddress: 'https://localhost:7048',
+  jwtTokenName: 'jwt'
 };
 
 /*

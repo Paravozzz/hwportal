@@ -27,8 +27,10 @@
           </ul>
         </li>
       </ul>
-      <a class="navbar-btn btn btn-sm btn-outline-primary ms-auto" routerLink="/authentication/login">Войти</a>
-      <a class="navbar-btn btn btn-sm btn-outline-primary ms-2" routerLink="/authentication/register">Регистрация</a>
+      <a class="navbar-btn btn btn-sm btn-outline-primary ms-auto" (click)="roleTest()">Тест</a>
+      <a class="navbar-btn btn btn-sm btn-outline-primary ms-auto" routerLink="/authentication/login" *ngIf="!isUserAuthenticated">Войти</a>
+      <a class="navbar-btn btn btn-sm btn-outline-primary ms-2" routerLink="/authentication/register" *ngIf="!isUserAuthenticated">Регистрация</a>
+      <a class="navbar-btn btn btn-sm btn-outline-primary ms-auto" (click)="LogoutUser()" *ngIf="isUserAuthenticated">Выйти</a>
     </div>
   </div>
 </nav>

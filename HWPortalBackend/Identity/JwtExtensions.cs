@@ -21,6 +21,7 @@ namespace HWPortalBackend.Identity
                     ValidateAudience = true,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
+
                     ValidIssuer = jwtConfiguration.GetSection("validIssuer").Value,
                     ValidAudience = jwtConfiguration.GetSection("validAudience").Value,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtConfiguration.GetSection("securityKey").Value))
