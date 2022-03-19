@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtModule } from '@auth0/angular-jwt';
-import { SharedModule } from './_shared/shared.module';
+import { environment } from '../environments/environment';
 
 import { ErrorHandlerService } from './_services/errorHandler.service';
 
+import { JwtModule } from '@auth0/angular-jwt';
+import { SharedModule } from './_shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { NewsComponent } from './news/news.component';
@@ -22,11 +24,10 @@ import { LayersTableComponent } from './calcdo/constrtab/layers-table/layers-tab
 import { LayersControlsComponent } from './calcdo/constrtab/layers-controls/layers-controls.component';
 import { PavementVarComponent } from './calcdo/constrtab/pavement-var/pavement-var.component';
 
-import { DataElementDirective } from './_directives/dataElement.directive';
 import { RouterLinkActiveDropdownDirective } from './_directives/routerLinkActiveDropdown.directive';
 
 export function tokenGetter() {
-  return localStorage.getItem("jwt");
+  return localStorage.getItem(environment.jwtTokenName);
 }
 
 @NgModule({
@@ -44,7 +45,6 @@ export function tokenGetter() {
     LayersTableComponent,
     LayersControlsComponent,
     PavementVarComponent,
-    DataElementDirective,
     RouterLinkActiveDropdownDirective
   ],
   imports: [

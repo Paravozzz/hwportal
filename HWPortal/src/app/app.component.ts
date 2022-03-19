@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { environment } from '../environments/environment';
 import { AuthenticationService } from './_services/authentication.service';
 import { EnvironmentUrlService } from './_services/environment-url.service';
 
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   public LogoutUser(): void {
-    localStorage.removeItem(this._envUrl.jwtTokenName);
+    localStorage.removeItem(environment.jwtTokenName);
     setTimeout(() => {
       this._authService.sendAuthStateChangeNotification(false);
       this._router.navigate(["/"]);

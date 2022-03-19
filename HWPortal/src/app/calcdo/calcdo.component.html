@@ -18,7 +18,7 @@
     </h2>
     <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
       <div class="accordion-body">
-        <app-idtab></app-idtab>
+        <app-idtab (onValueChange)="childFormChanged($event)"></app-idtab>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@
     </h2>
     <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show">
       <div class="accordion-body">
-        <app-loadstab></app-loadstab>
+        <app-loadstab (onValueChange)="childFormChanged($event)"></app-loadstab>
       </div>
     </div>
   </div>

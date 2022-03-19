@@ -1,12 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from '../../../environments/environment';
 import { AuthResponseDto } from '../../_interfaces/AuthResponseDto';
 import { RegistrationResponseDto } from '../../_interfaces/RegistrationResponseDto';
 import { UserForAuthenticationDto } from '../../_interfaces/UserForAuthenticationDto';
 import { UserForRegistrationDto } from '../../_interfaces/UserForRegistrationDto';
 import { AuthenticationService } from '../../_services/authentication.service';
-import { EnvironmentUrlService } from '../../_services/environment-url.service';
 
 @Component({
   selector: 'app-register',
@@ -23,7 +23,7 @@ export class RegisterComponent implements OnInit {
   public isRegisterRoute!: boolean;
   private returnUrl!: string;
 
-  constructor(private _authService: AuthenticationService, private _router: Router, private _envUrl: EnvironmentUrlService, private _route: ActivatedRoute) { }
+  constructor(private _authService: AuthenticationService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -75,7 +75,7 @@ export class RegisterComponent implements OnInit {
           this.resetMessages();
           this.successMessage = "Пользователь успешно аутентифицирован!";
           const token = responce.token;
-          localStorage.setItem(this._envUrl.jwtTokenName, token);
+          localStorage.setItem(environment.jwtTokenName, token);
 
           setTimeout(() => {
             this.registerForm.reset();

@@ -7,6 +7,7 @@ import { UserForAuthenticationDto } from '../_interfaces/UserForAuthenticationDt
 import { AuthResponseDto } from '../_interfaces/AuthResponseDto';
 import { Subject } from 'rxjs';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -31,17 +32,17 @@ export class AuthenticationService {
     if (newUserAuthState === false) {
       this._authChangeSub.next(newUserAuthState);
     }
-    const token = localStorage.getItem(this._envUrl.jwtTokenName);
+    const token = localStorage.getItem(environment.jwtTokenName);
     if (newUserAuthState === true && token !== null && !this._jwtHelper.isTokenExpired(token)) {
       this._authChangeSub.next(newUserAuthState);
     }
   }
 
   public isUserAuthenticated = (): boolean => {
-    const token = localStorage.getItem(this._envUrl.jwtTokenName);
+    const token = localStorage.getItem(environment.jwtTokenName);
     const result = token !== null && !this._jwtHelper.isTokenExpired(token);
     if (!result && token !== null) {
-      localStorage.removeItem(this._envUrl.jwtTokenName);
+      localStorage.removeItem(environment.jwtTokenName);
       this._authChangeSub.next(false);
     }
     return result;

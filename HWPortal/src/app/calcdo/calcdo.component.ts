@@ -1,6 +1,7 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { EnvironmentUrlService } from '../_services/environment-url.service';
+import { environment } from '../../environments/environment';
+import { FormValues } from '../_interfaces/FormValues';
+import { ModelService } from '../_services/model.service';
 
 @Component({
   selector: 'app-calcdo',
@@ -16,7 +17,9 @@ export class CalcdoComponent implements OnInit {
 
   tabComponentMap: Map<string, string> = new Map();
 
-  constructor(private _http: HttpClient, private _envUrl: EnvironmentUrlService) { }
+  model: object = {};
+
+  constructor(private _model: ModelService) { }
 
   ngOnInit(): void {
     this.tabComponentMap.set("Исходные данные", "idtab");
@@ -24,22 +27,27 @@ export class CalcdoComponent implements OnInit {
     this.tabComponentMap.set("Варианты конструкций", "variantstab");
     this.tabComponentMap.set("Расчёты", "calcstab");
 
-    let queryParams = new HttpParams();
-    queryParams = queryParams.append("modelType", "Расчёт_ДО");
-    this._http.get(this._envUrl.createCompleteRoute("api/models/default"), { params: queryParams }).subscribe(
-      res => {
-        if (!res) {
+    this._model.getDefaultModel("Расчёт_ДО").subscribe(
+      response => {
+        if (!response) {
           this.errorMessage = "responce is null";
           return;
         }
         this.loaded = true;
+        if (!environment.production) {
+          console.log(response);
+        }
+        this.model = response;
     }, error => {
       this.errorMessage = error;
     })
 
   }
 
-  //обработка нажатия на вкладку
+  /**
+   * Обработка события нажатия на вкладку
+   * @param event
+   */
   onTabClick(event: Event): void {
     if (!event) {
       return;
@@ -62,6 +70,19 @@ export class CalcdoComponent implements OnInit {
       this.currentTab = this.tabComponentMap.get(targetTab.innerText)!;
     }
 
+  }
+
+  /**
+   * Выполняется при измении дочерних форм во вложенных компонентах
+   * @param formValues
+   */
+  childFormChanged(formValues: FormValues) {
+    (this.model as any)[formValues.name] = formValues.values;
+    if (!environment.production) {
+      console.group('Форма после изменения:');
+      console.log(this.model);
+      console.groupEnd();
+    }
   }
 
 }

@@ -20,7 +20,8 @@ namespace HWPortalBackend.Controllers
             switch (modelType)
             {
                 case "Расчёт_ДО":
-                    return Ok(new Расчёт_ДО_Model());
+                    string s = JsonConvert.SerializeObject(new Расчёт_ДО_Model(), Formatting.Indented);
+                    return Content(JsonConvert.SerializeObject(new Расчёт_ДО_Model()), "application/json");
                 default:
                     return BadRequest();
             }

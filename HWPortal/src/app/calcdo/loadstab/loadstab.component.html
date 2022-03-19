@@ -1,244 +1,150 @@
-<div class="row align-items-center">
-  <div class="col">
-    <div class="input-group mb-3">
-      <label class="input-group-text" for="inputLoadType">Группа расчётной нагрузки</label>
-      <select class="form-select bottomframe" id="inputLoadType">
-        <option value="1">А10</option>
-        <option value="2">А11.5</option>
-        <option value="3">Другая</option>
-      </select>
+<form [formGroup]="form" novalidate>
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="Группа_расчётной_нагрузки">Группа расчётной нагрузки</label>
+        <select class="form-select bottomframe" id="Группа_расчётной_нагрузки" formControlName="Группа_расчётной_нагрузки">
+          <option value="1">А10</option>
+          <option value="2">А11.5</option>
+          <option value="99">Другая</option>
+        </select>
+      </div>
     </div>
-  </div>
-  <div class="col">
-    <div class="input-group mb-3" style="padding-left: 0.75rem;">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="checkboxОднобалонноеКолесо">
-        <label class="form-check-label" for="checkboxОднобалонноеКолесо">
-          Однобалонное колесо
-        </label>
+    <div class="col">
+      <div class="input-group mb-3" style="padding-left: 0.75rem;">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="Однобалонное_колесо" formControlName="Однобалонное_колесо">
+          <label class="form-check-label" for="Однобалонное_колесо">
+            Однобалонное колесо
+          </label>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="row align-items-center">
+  <div class="row align-items-center">
     <div class="col">
       <div class="input-group mb-3">
         <span class="input-group-text">Статическая нагрузка на колесо:</span>
-        <input type="text" class="form-control bottomframe">
+        <input type="text" class="form-control bottomframe" formControlName="Статическая_нагрузка_на_колесо">
         <span class="input-group-text"> м</span>
       </div>
     </div>
-  <div class="col">
-    <div class="input-group mb-3">
-      <span class="input-group-text">Давление в шине:</span>
-      <input type="text" class="form-control bottomframe">
-      <span class="input-group-text"> МПа</span>
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Давление в шине:</span>
+        <input type="text" class="form-control bottomframe" formControlName="Давление_в_шине">
+        <span class="input-group-text"> МПа</span>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row align-items-center">
-  <div class="col">
-    <div class="input-group mb-3">
-      <span class="input-group-text">Показатель изменения интенсивности:</span>
-      <input type="text" class="form-control bottomframe">
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Показатель изменения интенсивности:</span>
+        <input type="text" class="form-control bottomframe" formControlName="Показатель_изменения_интенсивности">
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Год, на который задана интенсивность:</span>
+        <input type="text" class="form-control bottomframe" formControlName="Год_на_который_задана_интенсивность">
+      </div>
     </div>
   </div>
-  <div class="col">
-    <div class="input-group mb-3">
-      <span class="input-group-text">Год, на который задана интенсивность:</span>
-      <input type="text" class="form-control bottomframe">
-    </div>
-  </div>
-</div>
 
-<div class="row align-items-center">
-  <div class="col">
-    <div class="input-group mb-3">
-      <span class="input-group-text">Срок работ по капитальному ремонту:</span>
-      <input type="text" class="form-control bottomframe">
-      <span class="input-group-text"> лет</span>
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Срок работ по капитальному ремонту:</span>
+        <input type="text" class="form-control bottomframe" formControlName="Срок_работ_по_капитальному_ремонту">
+        <span class="input-group-text"> лет</span>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <span class="input-group-text">Срок работ по ремонту:</span>
+        <input type="text" class="form-control bottomframe" formControlName="Срок_работ_по_ремонту">
+        <span class="input-group-text"> лет</span>
+      </div>
     </div>
   </div>
-  <div class="col">
-    <div class="input-group mb-3">
-      <span class="input-group-text">Срок работ по ремонту:</span>
-      <input type="text" class="form-control bottomframe">
-      <span class="input-group-text"> лет</span>
-    </div>
-  </div>
-</div>
 
-<div class="row align-items-center">
-  <div class="col-auto me-auto">
+  <div class="row align-items-center">
+    <div class="col-auto me-auto">
       <div class="input-group mb-3" style="padding-left: 0.75rem;">
         <div class="form-check">
-          <input class="form-check-input" type="checkbox" value="" id="checkboxЧислоПриложенийРасчётнойНагрузки">
-          <label class="form-check-label" for="checkboxЧислоПриложенийРасчётнойНагрузки">
+          <input class="form-check-input" type="checkbox" value="" id="Суммарное_число_приложений_расчётной_нагрузки_flag" formControlName="Суммарное_число_приложений_расчётной_нагрузки_flag">
+          <label class="form-check-label" for="Суммарное_число_приложений_расчётной_нагрузки_flag">
             Cуммарное число приложений расчётной нагрузки:
           </label>
         </div>
       </div>
-  </div>
-  <div class="col">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control bottomframe" value="" disabled />
     </div>
-  </div>
-</div>
-
-<div class="row align-items-center">
-  <div class="col-auto me-auto">
-    <div class="input-group mb-3" style="padding-left: 0.75rem;">
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="checkboxПривИнтенсивностьНаОднуПолосу">
-        <label class="form-check-label" for="checkboxПривИнтенсивностьНаОднуПолосу">
-          Приведённая интенсивность на одну полосу:
-        </label>
+    <div class="col">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control bottomframe" value="" formControlName="Суммарное_число_приложений_расчётной_нагрузки"/>
       </div>
     </div>
   </div>
-  <div class="col">
-    <div class="input-group mb-3">
-      <input type="text" class="form-control bottomframe" value="" disabled />
+
+  <div class="row align-items-center">
+    <div class="col-auto me-auto">
+      <div class="input-group mb-3" style="padding-left: 0.75rem;">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" value="" id="Приведённая_интенсивность_на_одну_полосу_flag" formControlName="Приведённая_интенсивность_на_одну_полосу_flag">
+          <label class="form-check-label" for="Приведённая_интенсивность_на_одну_полосу_flag">
+            Приведённая интенсивность на одну полосу:
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group mb-3">
+        <input type="text" class="form-control bottomframe" value="" formControlName="Приведённая_интенсивность_на_одну_полосу"/>
+      </div>
+    </div>
+    <div class="col-auto">
+      авт/сут.
     </div>
   </div>
-  <div class="col-auto">
-    авт/сут.
-  </div>
-</div>
 
-<hr />
+  <hr />
 
-<div class="row align-items-center">
-  <div class="col">
-    <div class="input-group mb-3">
-      <label class="input-group-text" for="КоэффициентыПриведенияКНагрузке">Коэффициенты приведения к нагрузке</label>
-      <select class="form-select bottomframe" id="КоэффициентыПриведенияКНагрузке">
-        <option value="1">По ПНСТ для нагрузки А10</option>
-        <option value="2">По ПНСТ для нагрузки А11.5</option>
-        <option value="3">Другие</option>
-      </select>
+  <div class="row align-items-center">
+    <div class="col">
+      <div class="input-group mb-3">
+        <label class="input-group-text" for="Коэффициенты_приведения_к_нагрузке">Коэффициенты приведения к нагрузке</label>
+        <select class="form-select bottomframe" id="Коэффициенты_приведения_к_нагрузке" formControlName="Коэффициенты_приведения_к_нагрузке">
+          <option value="1">По ПНСТ для нагрузки А10</option>
+          <option value="2">По ПНСТ для нагрузки А11.5</option>
+          <option value="99">Другие</option>
+        </select>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="row align-items-center">
-  <div class="col">
-    <table class="table table-sm">
-      <thead>
-        <tr>
-          <th scope="col">Категория ТС</th>
-          <th scope="col">Наименование</th>
-          <th scope="col">Коэффициент</th>
-          <th scope="col">Интенсивность</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">B</th>
-          <td>Небольшие грузовики (фургоны) и другие автомобили с прицепом и без него</td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С1</th>
-          <td>
-            Двухосные грузовые автомобили
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С2</th>
-          <td>
-            Трехосные грузовые автомобили
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С3</th>
-          <td>
-            Четырехосные грузовые автомобили
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С4</th>
-          <td>
-            Четырехосные автопоезда (двухосный грузовой автомобиль с прицепом)
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С5</th>
-          <td>
-            Пятиосные автопоезда (трехосный грузовой автомобиль с прицепом)
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С6</th>
-          <td>
-            Трехосные седельные автопоезда (двухосный седельный тягач с полуприцепом)
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С7</th>
-          <td>
-            Четырехосные седельные автопоезда (двухосный седельный тягач с полуприцепом)
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С8</th>
-          <td>
-            Пятиосные седельные автопоезда (двухосный седельный тягач с полуприцепом)
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С9</th>
-          <td>
-            Пятиосные седельные автопоезда (трехосный седельный тягач с полуприцепом)
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С10</th>
-          <td>
-            Шестиосные седельные автопоезда
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">С11</th>
-          <td>
-            Автомобили с семью и более осями и другие
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-        <tr>
-          <th scope="row">D</th>
-          <td>
-            Автобусы
-          </td>
-          <td><input type="text" class="form-control  form-control-sm" value="0" readonly></td>
-          <td><input type="text" class="form-control  form-control-sm" value="0"></td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="row align-items-center">
+    <div class="col">
+      <table class="table table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Категория ТС</th>
+            <th scope="col">Наименование</th>
+            <th scope="col">Коэффициент</th>
+            <th scope="col">Интенсивность</th>
+          </tr>
+        </thead>
+        <tbody formArrayName="Таблица_нагрузок">
+          <tr *ngFor="let gr of LoadsTable.controls; let i=index" [formGroupName]="i">
+            <th scope="row">{{gr.get('Категория_ТС')?.value}}</th>
+            <td>{{gr.get('Наименование')?.value}}</td>
+            <td><input type="text" class="form-control form-control-sm" formControlName="Коэффициент"></td>
+            <td><input type="text" class="form-control form-control-sm" formControlName="Интенсивность"></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
+</form>
