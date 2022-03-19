@@ -1,4 +1,6 @@
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { EnvironmentUrlService } from '../_services/environment-url.service';
 
 @Component({
   selector: 'app-calcdo',
@@ -7,17 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalcdoComponent implements OnInit {
 
+  loaded: boolean = false;
+  errorMessage: string = "";
+  successMessage: string = "";
   currentTab: string = "idtab";
 
   tabComponentMap: Map<string, string> = new Map();
 
-  constructor() { }
+  constructor(private _http: HttpClient, private _envUrl: EnvironmentUrlService) { }
 
   ngOnInit(): void {
     this.tabComponentMap.set("Исходные данные", "idtab");
     this.tabComponentMap.set("Нагрузки", "loadstab");
     this.tabComponentMap.set("Варианты конструкций", "variantstab");
     this.tabComponentMap.set("Расчёты", "calcstab");
+
+    let queryParams = new HttpParams();
+    queryParams = queryParams.append("modelType", "Расчёт_ДО");
+    this._http.get(this._envUrl.createCompleteRoute("api/models/default"), { params: queryParams }).subscribe(
+      res => {
+        if (!res) {
+          this.errorMessage = "responce is null";
+          return;
+        }
+        this.loaded = true;
+    }, error => {
+      this.errorMessage = error;
+    })
+
   }
 
   //обработка нажатия на вкладку

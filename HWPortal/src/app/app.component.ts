@@ -20,6 +20,9 @@ export class AppComponent implements OnInit, OnDestroy{
     this._authService.authChanged.subscribe(res => {
         this.isUserAuthenticated = res;
     });
+
+    this.isUserAuthenticated = this._authService.isUserAuthenticated();
+
   }
 
   ngOnDestroy(): void {
@@ -27,7 +30,7 @@ export class AppComponent implements OnInit, OnDestroy{
   }
 
   public roleTest() {
-    this._http.post('https://localhost:7048/roletest', "roletes tbody").subscribe(resp => {
+    this._http.post(this._envUrl.createCompleteRoute('roletest'), "roletes tbody").subscribe(resp => {
       console.log(resp)
     }, err => {
       console.log(err);
@@ -39,7 +42,7 @@ export class AppComponent implements OnInit, OnDestroy{
     setTimeout(() => {
       this._authService.sendAuthStateChangeNotification(false);
       this._router.navigate(["/"]);
-    }, 1000);
+    }, 300);
   }
 }
 

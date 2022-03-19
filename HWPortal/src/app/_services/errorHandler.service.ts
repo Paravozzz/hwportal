@@ -44,7 +44,7 @@ export class ErrorHandlerService implements HttpInterceptor {
   }
 
   private handleNotFound = (error: HttpErrorResponse): string => {
-    this._router.navigate(['/404']);
+    //this._router.navigate(['/404']);
     return 'Page not foung: ' + error.status;
   }
 

@@ -14,7 +14,7 @@ export class DataElementDirective {
     } else if (target instanceof HTMLInputElement) {
       console.log(target.value);
     }
-    this.data.send();
+    //this.data.send();
   }
 
 }

@@ -3,7 +3,7 @@
 
     public class HWPortalDataModel
     {
-        public ПродуктBase[] Продукты { get; set; }
+        public ModelBase[] Продукты { get; set; }
     }
 
 }

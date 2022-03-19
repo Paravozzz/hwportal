@@ -1,9 +1,9 @@
-<div class="border-start border-2">
-  <p class="fs-4 ms-3" *ngIf="isRegisterRoute">Регистрация</p>
-  <p class="fs-4 ms-3" *ngIf="!isRegisterRoute">Вход</p>
-</div>
-<div class="alert alert-danger" role="alert" *ngIf="errorMessage" [innerHTML]="errorMessage"></div>
-<div class="alert alert-success" role="alert" *ngIf="successMessage" [innerHTML]="successMessage"></div>
+<div componentTitle="Регистрация" *ngIf="isRegisterRoute"></div>
+<div componentTitle="Вход" *ngIf="!isRegisterRoute"></div>
+
+<div [errorMessage]="errorMessage"></div>
+<div [successMessage]="successMessage"></div>
+
 <form [formGroup]="registerForm" (ngSubmit)="onRegisterOrLogin(registerForm.value)" novalidate>
   <div class="row">
     <div class="col-md-4 offset-md-4">

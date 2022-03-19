@@ -4,7 +4,7 @@ import { NavigationEnd, Router } from '@angular/router';
 @Directive({
   selector: '[routerLinkActiveDropdown]'
 })
-export class routerLinkActiveDropdownDirective implements OnInit {
+export class RouterLinkActiveDropdownDirective implements OnInit {
 
   constructor(private router: Router, private element: ElementRef) { }
 

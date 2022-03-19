@@ -10,4 +10,8 @@ export class EnvironmentUrlService {
   public jwtTokenName: string = environment.jwtTokenName;
 
   constructor() { }
+
+  public createCompleteRoute = (route: string) => {
+    return `${this.urlAddress}/${route}`;
+  }
 }

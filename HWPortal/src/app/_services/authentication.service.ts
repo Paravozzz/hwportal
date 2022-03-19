@@ -20,11 +20,11 @@ export class AuthenticationService {
   constructor(private _http: HttpClient, private _envUrl: EnvironmentUrlService, private _jwtHelper: JwtHelperService) { }
 
   public registerUser = (route: string, body: UserForRegistrationDto) => {
-    return this._http.post<RegistrationResponseDto>(this.createCompleteRoute(route, this._envUrl.urlAddress), body);
+    return this._http.post<RegistrationResponseDto>(this._envUrl.createCompleteRoute(route), body);
   }
 
   public loginUser = (route: string, body: UserForAuthenticationDto) => {
-    return this._http.post<AuthResponseDto>(this.createCompleteRoute(route, this._envUrl.urlAddress), body);
+    return this._http.post<AuthResponseDto>(this._envUrl.createCompleteRoute(route), body);
   }
 
   public sendAuthStateChangeNotification = (newUserAuthState: boolean) => {
@@ -45,9 +45,5 @@ export class AuthenticationService {
       this._authChangeSub.next(false);
     }
     return result;
-  }
-
-  private createCompleteRoute = (route: string, envAddress: string) => {
-    return `${envAddress}/${route}`;
   }
 }
