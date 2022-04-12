@@ -1,6 +1,6 @@
 ﻿namespace HWPortalBackend.DataModels
 {
-    public class ModelBase
+    public interface IModel
     {
         public string Тип_Модели { get; set; }
     }

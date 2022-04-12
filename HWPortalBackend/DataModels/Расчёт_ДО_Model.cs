@@ -1,7 +1,11 @@
-﻿namespace HWPortalBackend.DataModels
+﻿using HWPortalBackend.DataModels.Расчёт_ДО;
+using Newtonsoft.Json;
+
+namespace HWPortalBackend.DataModels
 {
-    public class Расчёт_ДО_Model : ModelBase
+    public class Расчёт_ДО_Model : IModel
     {
+        public string Тип_Модели { get; set; }
         public Исходные_Данные Исходные_данные { get; set; }
         public Нагрузки Нагрузки { get; set; }
         public Варианты_Конструкций Варианты_конструкций { get; set; }

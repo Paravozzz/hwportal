@@ -1,4 +1,4 @@
-﻿namespace HWPortalBackend.DataModels
+﻿namespace HWPortalBackend.DataModels.Расчёт_ДО
 {
     public class Вариант_Конструкции_ДО
     {
